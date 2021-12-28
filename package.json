@@ -14,7 +14,8 @@
     "prepublishOnly": "npm run build",
     "prebuild": "rimraf lib",
     "build": "microbundle --jsx React.createElement",
-    "build:watch": "microbundle watch --jsx React.createElement"
+    "build:watch": "microbundle watch --jsx React.createElement",
+    "format": "npx prettier '**/*.tsx' --write"
   },
   "repository": {
     "type": "git",

@@ -1,7 +1,7 @@
-import React from 'react'
+import React from "react";
 
 interface ActiveCampaignInputsProps {
-  formId: string
+  formId: string;
 }
 
 export function ActiveCampaignInputs({ formId }: ActiveCampaignInputsProps) {
@@ -15,31 +15,52 @@ export function ActiveCampaignInputs({ formId }: ActiveCampaignInputsProps) {
       <input type="hidden" name="act" value="sub" />
       <input type="hidden" name="v" value="2" />
     </>
-  )
+  );
 }
 
-type Options = { fetcher: (formData: FormData, headers: any) => Promise<any> }
-export function handleActiveCampaignSubmit<T extends Record<string, any>>(data: T, subdomain: string, formId: string, options?: Options) {
-  const completeData = { u: formId, f: formId, s: '', c: '0', m: '0', act: 'sub', v: '2', ...data }
+type Options = {
+  fetcher: (formData: FormData, headers: any) => Promise<any>
+};
+
+export async function handleActiveCampaignSubmit(
+  formData: FormData,
+  subdomain: string,
+  formId: string,
+  options?: Options
+) {
+  const completeData: any = {
+    u: formId,
+    f: formId,
+    s: "",
+    c: "0",
+    m: "0",
+    act: "sub",
+    v: "2"
+  };
 
   try {
-    let formData = new FormData()
     for (let key in completeData) {
-      formData.append(key, completeData[key])
+      formData.append(key, completeData[key]);
     }
 
     if (options?.fetcher) {
-      options.fetcher(formData, { method: 'POST', mode: 'no-cors', cache: 'no-cache' })
-      return
+      options.fetcher(formData, {
+        method: "POST",
+        mode: "no-cors",
+        cache: "no-cache"
+      });
+      return;
     }
 
-    fetch(`https://${subdomain}.activehosted.com/proc.php`, {
-      method: 'POST',
-      mode: 'no-cors',
-      cache: 'no-cache',
-      body: formData,
-    })
+    const response = await fetch(`https://${subdomain}.activehosted.com/proc.php`, {
+      method: "POST",
+      mode: "no-cors",
+      cache: "no-cache",
+      body: formData
+    });
+
+    return response.json();
   } catch (error) {
-    throw new Error(`Request failed ${error}`)
+    throw new Error(`Request failed ${error}`);
   }
 }
