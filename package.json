@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/bmstefanski/active-campaign-react.git"
+    "url": "git+https://github.com/douglasrubims/active-campaign-react.git"
   },
   "keywords": [
     "activecampaign",
@@ -28,9 +28,9 @@
   "author": "bmstefanski",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/bmstefanski/active-campaign-react/issues"
+    "url": "https://github.com/douglasrubims/active-campaign-react/issues"
   },
-  "homepage": "https://github.com/bmstefanski/active-campaign-react#readme",
+  "homepage": "https://github.com/douglasrubims/active-campaign-react#readme",
   "peerDependencies": {
     "react": ">=16.0.0",
     "react-dom": ">=16.0.0"
